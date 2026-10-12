@@ -18,61 +18,85 @@ export const viewport: Viewport = {
   themeColor: "#000000",
 };
 
+// Resuelve la URL de producción o Vercel dinámicamente para que las tarjetas de OpenGraph funcionen en cualquier dominio
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "https://grupo-valu.vercel.app");
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "GRUPO VALU — Préstamos Personales y Garantía Vehicular en Perú",
+    default: "GRUPO VALU | Préstamos Personales y Garantía Vehicular en Perú",
     template: "%s | GRUPO VALU",
   },
   description:
-    "Tu solución financiera fácil, rápida y segura. Préstamos personales al instante y préstamos con garantía vehicular sin dejar de usar tu auto. GRUPO VALU (RUC: 20616559363).",
+    "Soluciones financieras ágiles, seguras y transparentes en Perú. Préstamos personales al instante y créditos con garantía vehicular sin dejar de conducir tu auto. RUC: 20616559363.",
   keywords: [
-    "préstamos personales",
-    "préstamo vehicular",
-    "crédito rápido Perú",
-    "garantía de auto",
-    "Procustodia",
-    "financiera Perú",
     "GRUPO VALU",
-    "crédito al instante",
-    "dinero rápido",
+    "préstamos personales Perú",
+    "crédito vehicular",
+    "garantía vehicular",
+    "préstamo con auto sin dejarlo",
+    "crédito al instante Lima",
+    "dinero rápido seguro",
+    "Procustodia",
     "RUC 20616559363",
+    "financiera confiable Perú",
   ],
-  authors: [{ name: "GRUPO VALU" }],
-  metadataBase: new URL("https://grupovalu.pe"),
+  authors: [{ name: "GRUPO VALU", url: SITE_URL }],
+  creator: "GRUPO VALU",
+  publisher: "GRUPO VALU",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "GRUPO VALU — Tu Solución Financiera de Confianza",
-    description:
-      "Préstamos personales al instante y préstamos con garantía vehicular en todo el Perú. Rápido, transparente y seguro. RUC: 20616559363.",
-    url: "https://grupovalu.pe",
-    siteName: "GRUPO VALU",
-    locale: "es_PE",
     type: "website",
+    locale: "es_PE",
+    url: SITE_URL,
+    siteName: "GRUPO VALU",
+    title: "GRUPO VALU | Préstamos Personales y Garantía Vehicular",
+    description:
+      "Soluciones financieras al instante en Perú. Préstamos personales y créditos con garantía vehicular sin dejar tu auto. Aprobación inmediata y total respaldo legal. RUC: 20616559363.",
     images: [
       {
         url: "/og-image.jpg",
+        secureUrl: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "GRUPO VALU — Préstamos Personales y Garantía Vehicular",
         type: "image/jpeg",
+        alt: "GRUPO VALU — Préstamos Personales y Garantía Vehicular en Perú",
       },
       {
         url: "/og-image.png",
+        secureUrl: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "GRUPO VALU — Préstamos Personales y Garantía Vehicular",
         type: "image/png",
+        alt: "GRUPO VALU — Soluciones Financieras de Confianza",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "GRUPO VALU — Préstamos Rápidos y Seguros",
+    title: "GRUPO VALU | Préstamos Personales y Garantía Vehicular",
     description:
-      "Consigue tu préstamo en minutos. Préstamos personales y con garantía vehicular. RUC: 20616559363.",
+      "Préstamos personales rápidos y créditos con garantía vehicular sin dejar tu auto en Perú. Aprobación inmediata y total respaldo legal. RUC: 20616559363.",
     images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   icons: {
     icon: [
@@ -83,12 +107,6 @@ export const metadata: Metadata = {
       { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
     ],
     shortcut: "/favicon.ico",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    maxImagePreview: "large",
-    maxSnippet: -1,
   },
 };
 

@@ -9,13 +9,14 @@ export const metadata: Metadata = {
     title: "Libro de Reclamaciones Virtual | GRUPO VALU",
     description:
       "Canal oficial de atención de quejas y reclamos de GRUPO VALU (RUC: 20616559363). Conforme a la normativa de INDECOPI.",
-    url: "https://grupovalu.pe/libro-de-reclamaciones",
+    url: "/libro-de-reclamaciones",
     siteName: "GRUPO VALU",
     locale: "es_PE",
     type: "website",
     images: [
       {
         url: "/og-image.jpg",
+        secureUrl: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GRUPO VALU — Libro de Reclamaciones Virtual",

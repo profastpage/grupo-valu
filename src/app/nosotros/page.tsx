@@ -26,13 +26,14 @@ export const metadata: Metadata = {
     title: "Nosotros | GRUPO VALU — Tu Aliado Financiero de Confianza",
     description:
       "Conoce la historia, misión y valores de GRUPO VALU (RUC: 20616559363). Soluciones financieras ágiles y seguras en todo el Perú.",
-    url: "https://grupovalu.pe/nosotros",
+    url: "/nosotros",
     siteName: "GRUPO VALU",
     locale: "es_PE",
     type: "website",
     images: [
       {
         url: "/og-image.jpg",
+        secureUrl: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GRUPO VALU — Nosotros",

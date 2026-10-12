@@ -25,13 +25,14 @@ export const metadata: Metadata = {
     title: "Préstamo con Garantía Vehicular | GRUPO VALU",
     description:
       "Usa tu auto como garantía sin dejar de usarlo. Alianza estratégica con Procustodia para máxima seguridad. Montos hasta S/ 100,000. RUC: 20616559363.",
-    url: "https://grupovalu.pe/garantia-vehicular",
+    url: "/garantia-vehicular",
     siteName: "GRUPO VALU",
     locale: "es_PE",
     type: "website",
     images: [
       {
         url: "/og-image.jpg",
+        secureUrl: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GRUPO VALU — Préstamos con Garantía Vehicular",

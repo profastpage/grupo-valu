@@ -25,13 +25,14 @@ export const metadata: Metadata = {
     title: "Préstamos Personales al Instante | GRUPO VALU",
     description:
       "Dinero rápido cuando más lo necesitas. Montos desde S/ 500 hasta S/ 20,000 con aprobación en menos de 24 horas. RUC: 20616559363.",
-    url: "https://grupovalu.pe/prestamos-personales",
+    url: "/prestamos-personales",
     siteName: "GRUPO VALU",
     locale: "es_PE",
     type: "website",
     images: [
       {
         url: "/og-image.jpg",
+        secureUrl: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GRUPO VALU — Préstamos Personales al Instante",
