@@ -183,7 +183,7 @@ export default function LibroDeReclamacionesPage() {
                   </span>
                 </h1>
                 <p className="mt-6 text-lg sm:text-xl text-white/70 max-w-xl leading-relaxed">
-                  Ejerce tu derecho como consumidor. En MANDI CORP
+                  Ejerce tu derecho como consumidor. En GRUPO VALU
                   garantizamos una atención justa y transparente conforme a la
                   Ley N° 29571 — Código de Protección y Defensa del Consumidor.
                 </p>
@@ -196,8 +196,8 @@ export default function LibroDeReclamacionesPage() {
               >
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-black/30">
                   <Image
-                    src="/images/claim-form.webp"
-                    alt="Formulario de Libro de Reclamaciones - MANDI CORP"
+                    src="/images/claim-form.jpg"
+                    alt="Libro de Reclamaciones - GRUPO VALU"
                     width={560}
                     height={380}
                     className="w-full h-auto object-cover rounded-3xl"

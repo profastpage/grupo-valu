@@ -41,37 +41,36 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  /* ── MANDI CORP Brand Colors (Negro + Dorado) ── */
-  --color-brand-blue: #DCAA61;   /* alias legacy → dorado principal */
-  --color-brand-dark: #060503;   /* negro principal MANDI */
-  --color-brand-green: #A97631;  /* alias legacy → dorado oscuro */
-  --color-brand-orange: #DCAA61; /* dorado principal MANDI */
-  --color-brand-red: #A97631;    /* alias legacy → dorado oscuro */
+  /* ── GRUPO VALU Brand Colors (Negro Obsidiana + Dorado Metálico + Plata) ── */
+  --color-brand-blue: #E5A93C;   /* alias legacy → dorado principal */
+  --color-brand-dark: #000000;   /* negro obsidiana GRUPO VALU */
+  --color-brand-green: #B88220;  /* alias legacy → dorado oscuro */
+  --color-brand-orange: #E5A93C; /* dorado principal GRUPO VALU */
+  --color-brand-red: #B88220;    /* alias legacy → dorado oscuro */
+  --color-brand-silver: #CBD5E1; /* plata metálico */
 
-  /* ── Override Tailwind orange palette → MANDI Gold palette ── */
-  /* Mantener nombres orange-* para no tocar componentes; valores mapeados a dorado MANDI */
-  --color-orange-300: #E0CBAB;  /* gold-light (crema dorado) */
-  --color-orange-400: #DCAA61;  /* gold-primary (dorado principal) */
-  --color-orange-500: #DCAA61;  /* gold-primary (dorado principal) */
-  --color-orange-600: #A97631;  /* gold-dark (dorado oscuro) */
-  --color-orange-700: #6D4B21;  /* gold-deep (dorado profundo) */
-  --color-orange-900: #2A2013;  /* black-soft (negro suave) */
+  /* ── Override Tailwind orange palette → GRUPO VALU Gold palette ── */
+  --color-orange-300: #F3DCB3;  /* gold-light (brillo dorado) */
+  --color-orange-400: #E5A93C;  /* gold-primary (dorado oficial) */
+  --color-orange-500: #E5A93C;  /* gold-primary */
+  --color-orange-600: #B88220;  /* gold-dark (dorado oscuro) */
+  --color-orange-700: #7E5511;  /* gold-deep (dorado profundo) */
+  --color-orange-900: #1E1505;  /* black-warm */
 
-  /* ── Override Tailwind slate palette → NEGRO PURO MANDI (sin tinte azul) ── */
-  /* Elimina el fondo "azul medio" que se veía con slate-950 original */
+  /* ── Override Tailwind slate palette → NEGRO OBSIDIANA PURO ── */
   --color-slate-950: #000000;   /* negro absoluto */
-  --color-slate-900: #060503;   /* negro MANDI principal */
-  --color-slate-800: #0F0C08;   /* negro con tinte dorado profundo */
-  --color-slate-700: #1A140B;   /* negro suave cálido */
+  --color-slate-900: #05070B;   /* fondo primario profundo */
+  --color-slate-800: #0D111A;   /* elevación oscura */
+  --color-slate-700: #161D2B;   /* elevación suave */
 
-  /* ── Override red palette → dorado oscuro (mantener nombres) ── */
-  --color-red-300: #E0CBAB;  /* gold-light */
-  --color-red-400: #DCAA61;  /* gold-primary */
-  --color-red-500: #DCAA61;  /* gold-primary */
-  --color-red-600: #A97631;  /* gold-dark */
-  --color-red-700: #6D4B21;  /* gold-deep */
-  --color-red-800: #4A3216;  /* gold-deep oscuro */
-  --color-red-900: #2A2013;  /* black-soft */
+  /* ── Override red palette → dorado oscuro ── */
+  --color-red-300: #F3DCB3;
+  --color-red-400: #E5A93C;
+  --color-red-500: #E5A93C;
+  --color-red-600: #B88220;
+  --color-red-700: #7E5511;
+  --color-red-800: #52370B;
+  --color-red-900: #1E1505;
 }
 
 :root {
@@ -82,9 +81,9 @@
   --card-foreground: oklch(0.145 0.015 260);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0.015 260);
-  /* MANDI CORP — Dorado sobre Negro (OKLCH approximado desde hex) */
-  --primary: oklch(0.80 0.12 75);           /* #DCAA61 dorado principal */
-  --primary-foreground: oklch(0.02 0.005 60); /* #060503 negro */
+  /* GRUPO VALU — Dorado sobre Negro */
+  --primary: oklch(0.80 0.12 75);           /* #E5A93C dorado principal */
+  --primary-foreground: oklch(0.02 0.005 60); /* #000000 negro */
   --secondary: oklch(0.18 0.02 65);          /* #2A2013 black-soft */
   --secondary-foreground: oklch(0.84 0.04 70); /* #E0CBAB gold-light */
   --muted: oklch(0.18 0.02 65);              /* #2A2013 */
@@ -114,7 +113,7 @@
     @apply bg-slate-950 text-slate-800;  /* slate-950 sobreescrito a negro puro arriba */
     overflow-x: hidden;
     position: relative;
-    background-color: #000000 !important;  /* negro absoluto MANDI, garantiza cero tinte azul */
+    background-color: #000000 !important;  /* negro absoluto GRUPO VALU */
     /* Padding inferior en mobile para que el BottomNav no tape contenido.
        72px = altura del BottomNav (48px área táctil + 24px padding/borde).
        Env(safe-area-inset-bottom) suma el espacio de iPhone con notch/home indicator.
@@ -137,15 +136,15 @@
 }
 
 .glass-dark {
-  background: rgba(6, 5, 3, 0.7);   /* #060503 negro MANDI con alpha */
+  background: rgba(5, 7, 11, 0.75);   /* negro obsidiana con alpha */
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(220, 170, 97, 0.18);  /* dorado sutil */
+  border: 1px solid rgba(229, 169, 60, 0.2);  /* dorado sutil */
 }
 
-/* Hero gradient background — MANDI CORP (negro→dorado profundo→dorado oscuro→dorado principal) */
+/* Hero gradient background — GRUPO VALU */
 .hero-gradient {
-  background: linear-gradient(135deg, #000000 0%, #060503 25%, #2A2013 50%, #6D4B21 75%, #A97631 100%);
+  background: linear-gradient(135deg, #000000 0%, #05070B 25%, #1E1505 50%, #7E5511 75%, #B88220 100%);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -328,7 +327,7 @@
   filter: blur(40px);
 }
 
-/* Animated gradient for accents — MANDI CORP dorado metálico shimmer */
+/* Animated gradient for accents — GRUPO VALU dorado metálico shimmer */
 .gradient-shimmer {
   background: linear-gradient(
     110deg,

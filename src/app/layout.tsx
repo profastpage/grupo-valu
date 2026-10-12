@@ -15,16 +15,16 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#060503",
+  themeColor: "#000000",
 };
 
 export const metadata: Metadata = {
   title: {
-    default: "MANDI CORP — Préstamos Personales y Garantía Vehicular en Perú",
-    template: "%s | MANDI CORP",
+    default: "GRUPO VALU — Préstamos Personales y Garantía Vehicular en Perú",
+    template: "%s | GRUPO VALU",
   },
   description:
-    "Tu solución financiera fácil, rápida y segura. Préstamos personales al instante y préstamos con garantía vehicular sin dejar de usar tu auto. CORPORACIÓN MANDI SAC (RUC: 20615991938).",
+    "Tu solución financiera fácil, rápida y segura. Préstamos personales al instante y préstamos con garantía vehicular sin dejar de usar tu auto. GRUPO VALU (RUC: 20616559363).",
   keywords: [
     "préstamos personales",
     "préstamo vehicular",
@@ -32,40 +32,57 @@ export const metadata: Metadata = {
     "garantía de auto",
     "Procustodia",
     "financiera Perú",
-    "MANDI CORP",
-    "CORPORACIÓN MANDI SAC",
+    "GRUPO VALU",
     "crédito al instante",
     "dinero rápido",
-    "RUC 20615991938",
+    "RUC 20616559363",
   ],
-  authors: [{ name: "CORPORACIÓN MANDI SAC" }],
-  metadataBase: new URL("https://mandi-corp.vercel.app"),
+  authors: [{ name: "GRUPO VALU" }],
+  metadataBase: new URL("https://grupovalu.pe"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "MANDI CORP — Tu Solución Financiera de Confianza",
+    title: "GRUPO VALU — Tu Solución Financiera de Confianza",
     description:
-      "Préstamos personales al instante y préstamos con garantía vehicular. Tu aliado financiero confiable en Perú.",
-    url: "https://mandi-corp.vercel.app",
-    siteName: "MANDI CORP",
+      "Préstamos personales al instante y préstamos con garantía vehicular en todo el Perú. Rápido, transparente y seguro. RUC: 20616559363.",
+    url: "https://grupovalu.pe",
+    siteName: "GRUPO VALU",
     locale: "es_PE",
     type: "website",
     images: [
       {
-        url: "/og-image.webp",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "MANDI CORP — Préstamos Personales y Garantía Vehicular",
+        alt: "GRUPO VALU — Préstamos Personales y Garantía Vehicular",
+        type: "image/jpeg",
+      },
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "GRUPO VALU — Préstamos Personales y Garantía Vehicular",
+        type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "MANDI CORP — Préstamos Rápidos y Seguros",
+    title: "GRUPO VALU — Préstamos Rápidos y Seguros",
     description:
-      "Consigue tu préstamo en minutos. Préstamos personales y con garantía vehicular.",
-    images: ["/og-image.webp"],
+      "Consigue tu préstamo en minutos. Préstamos personales y con garantía vehicular. RUC: 20616559363.",
+    images: ["/og-image.jpg"],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "256x256" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
   },
   robots: {
     index: true,

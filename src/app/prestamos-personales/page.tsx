@@ -19,8 +19,33 @@ import DeepLinking from "@/components/DeepLinking";
 export const metadata: Metadata = {
   title: "Préstamos Personales al Instante",
   description:
-    "Obtén tu préstamo personal rápido y sin complicaciones. Montos desde S/ 500 hasta S/ 20,000 con aprobación en menos de 24 horas. CORPORACIÓN MANDI SAC.",
+    "Obtén tu préstamo personal rápido y sin complicaciones. Montos desde S/ 500 hasta S/ 20,000 con aprobación en menos de 24 horas. GRUPO VALU (RUC: 20616559363).",
   alternates: { canonical: "/prestamos-personales" },
+  openGraph: {
+    title: "Préstamos Personales al Instante | GRUPO VALU",
+    description:
+      "Dinero rápido cuando más lo necesitas. Montos desde S/ 500 hasta S/ 20,000 con aprobación en menos de 24 horas. RUC: 20616559363.",
+    url: "https://grupovalu.pe/prestamos-personales",
+    siteName: "GRUPO VALU",
+    locale: "es_PE",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "GRUPO VALU — Préstamos Personales al Instante",
+        type: "image/jpeg",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Préstamos Personales al Instante | GRUPO VALU",
+    description:
+      "Aprobación express en 24 horas. Montos de S/ 500 a S/ 20,000. GRUPO VALU.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 const BENEFITS = [
@@ -131,12 +156,12 @@ export default function PrestamosPersonalesPage() {
               </div>
               </div>
               <div className="hidden lg:block">
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-black/20">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-black/20 border border-[#E5A93C]/20">
                   <Image
-                    src="/images/personal-loan.webp"
-                    alt="Préstamo personal al instante - MANDI CORP"
-                    width={480}
-                    height={360}
+                    src="/images/prestamos-al-instante-valu.png"
+                    alt="Préstamos al Instante — GRUPO VALU"
+                    width={560}
+                    height={313}
                     className="w-full h-auto object-cover rounded-3xl"
                     priority
                   />

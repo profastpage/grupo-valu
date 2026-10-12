@@ -6,25 +6,33 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
-import { NAV_LINKS } from "@/lib/constants";
+import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 import { getDynamicWhatsAppUrl } from "@/lib/whatsapp";
 
 /* ═══════════════════════════════════════════════════════════════
-    CREAM PREMIUM PALETTE — MANDI CORP
+    ELEGANT PEARL CREAM PALETTE — GRUPO VALU (Crema Perlado & Oro)
    ═══════════════════════════════════════════════════════════════ */
-const CREAM = {
-  bg: "#e5ded6",
-  bgAlt: "#e1d8d1",
-  text: "#2c2c2c",
-  textMuted: "#6b6460",
-  gold: "#B8860B",
-  goldLight: "#D4AF37",
+const THEME = {
+  // Pearl Cream gradients & surfaces
+  bgPearlNormal:
+    "linear-gradient(180deg, rgba(255, 253, 248, 0.95) 0%, rgba(247, 242, 232, 0.92) 100%)",
+  bgPearlScrolled:
+    "linear-gradient(180deg, rgba(255, 254, 250, 0.98) 0%, rgba(245, 240, 229, 0.96) 100%)",
+  bgDrawer: "linear-gradient(180deg, #FDFCF9 0%, #F6F1E7 100%)",
+  text: "#1E293B", // Deep slate for high contrast on pearl cream
+  textMuted: "#64748B", // Slate-500
+  textDark: "#0F172A", // Slate-900
+  gold: "#B88220",
+  goldLight: "#9A6700",
   goldDark: "#8B6508",
-  goldGlow: "rgba(184, 134, 11, 0.15)",
-  white: "#FFFFFF",
-  border: "rgba(0, 0, 0, 0.06)",
+  goldGlow: "rgba(229, 169, 60, 0.35)",
+  borderNormal: "rgba(212, 175, 55, 0.28)",
+  borderScrolled: "rgba(212, 168, 67, 0.40)",
+  shadowNormal:
+    "0 4px 22px -2px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(184, 130, 32, 0.08)",
+  shadowScrolled:
+    "0 10px 32px -5px rgba(0, 0, 0, 0.22), 0 4px 14px rgba(184, 130, 32, 0.14)",
   whatsapp: "#25D366",
-  whatsappBg: "#e6f7ef",
 };
 
 /* ═══════════════════════════════════════════════════════════════
@@ -54,7 +62,7 @@ export default function Navbar() {
       setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // initial check
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -69,15 +77,15 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
-  // ── Listener para el evento 'mandi:open-drawer' ──────────────────
+  // ── Listener para apertura de drawer ────────────────────────
   useEffect(() => {
     const handleOpenDrawer = () => setIsOpen(true);
     if (typeof window !== "undefined") {
-      window.addEventListener("mandi:open-drawer", handleOpenDrawer);
+      window.addEventListener("valu:open-drawer", handleOpenDrawer);
     }
     return () => {
       if (typeof window !== "undefined") {
-        window.removeEventListener("mandi:open-drawer", handleOpenDrawer);
+        window.removeEventListener("valu:open-drawer", handleOpenDrawer);
       }
     };
   }, []);
@@ -86,46 +94,29 @@ export default function Navbar() {
     setIsOpen(false);
   }, []);
 
-  // Dynamic WhatsApp URL based on current pathname
   const dynamicWhatsAppUrl = getDynamicWhatsAppUrl(pathname);
-  const phoneHref = "tel:+51966897008";
-
-  /* ═══════════════════════════════════════════════════════════════
-      DYNAMIC COLORS — two states:
-      · !scrolled → full bleed transparent (white text on dark hero)
-      · scrolled  → cream solid (#e5ded6, dark text)
-  ═══════════════════════════════════════════════════════════════ */
-  const navTextColor = isScrolled ? CREAM.text : "rgba(255,255,255,0.9)";
-  const navActiveColor = CREAM.goldLight; // gold stays gold always
-  const btnTextColor = isScrolled ? CREAM.text : "rgba(255,255,255,0.9)";
-  const menuIconColor = isScrolled ? CREAM.text : "rgba(255,255,255,0.9)";
-  const waBtnBg = isScrolled ? CREAM.whatsappBg : "rgba(37, 211, 102, 0.1)";
-  const waBtnBorder = isScrolled ? "rgba(37, 211, 102, 0.2)" : "rgba(37, 211, 102, 0.3)";
-  const hoverBg = isScrolled ? "rgba(0, 0, 0, 0.04)" : "rgba(255, 255, 255, 0.08)";
-
-  /* ── Logo: gold when transparent, normal when scrolled ── */
-  const logoSrc = isScrolled ? "/logo-mandi.png" : "/logo-transparent.png";
-  const logoAspect = isScrolled ? "3756 / 894" : "1804 / 554";
+  const phoneHref = `tel:${SITE_CONFIG.phone}`;
 
   return (
     <>
       {/* ═══════════════════════════════════════════════════════════════
-          HEADER — TWO STATES
-          ─────────────────────────────────────────────────────────────
-          · Full bleed transparent (top): fondo transparente, texto blanco, dorado activo
-          · Cream solid (scrolled): fondo #e5ded6, texto oscuro, dorado activo
-      ═══════════════════════════════════════════════════════════════ */}
+          HEADER — TRANSPARENTE EN INICIO ↔ CREMA PERLADO ELEGANTE AL BAJAR
+         ═══════════════════════════════════════════════════════════════ */}
       <header
-        className="fixed top-0 left-0 right-0 z-50 flex items-center h-16 sm:h-[72px] transition-all duration-500"
+        className="fixed top-0 left-0 right-0 z-50 flex items-center h-16 sm:h-[76px] transition-all duration-500 ease-in-out"
         style={
           isScrolled
             ? {
-                background: `linear-gradient(180deg, ${CREAM.bg} 0%, ${CREAM.bgAlt} 100%)`,
-                borderBottom: `1px solid ${CREAM.border}`,
-                boxShadow: "0 1px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02)",
+                background: THEME.bgPearlScrolled,
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
+                borderBottom: `1px solid ${THEME.borderScrolled}`,
+                boxShadow: THEME.shadowScrolled,
               }
             : {
                 background: "transparent",
+                backdropFilter: "none",
+                WebkitBackdropFilter: "none",
                 borderBottom: "1px solid transparent",
                 boxShadow: "none",
               }
@@ -135,61 +126,103 @@ export default function Navbar() {
           className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
           aria-label="Navegación principal"
         >
-          {/* ── LOGO — Swaps: gold (transparent) ↔ normal (scrolled) ── */}
+          {/* ── LOGO — GRUPO VALU ── */}
           <Link
             href="/"
-            className="relative shrink-0 w-[130px] md:w-[190px]"
-            style={{ aspectRatio: logoAspect }}
-            aria-label="MANDI CORP - Inicio"
+            className="flex items-center gap-3 group"
+            aria-label="GRUPO VALU - Inicio"
           >
-            <Image
-              src={logoSrc}
-              alt="Logo MANDI CORP"
-              fill
-              priority
-              sizes="(max-width: 768px) 200px, 340px"
-              className="object-contain object-left select-none"
-            />
+            <div className="relative h-11 w-11 sm:h-13 sm:w-13 shrink-0 transition-transform duration-300 group-hover:scale-105 drop-shadow-sm">
+              <Image
+                src="/grupovalu-sinfondo.png"
+                alt="Logo GRUPO VALU"
+                fill
+                priority
+                sizes="56px"
+                className="object-contain select-none"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-lg sm:text-xl font-black tracking-wider leading-none flex items-center gap-1.5 transition-colors duration-500">
+                <span
+                  className="font-extrabold tracking-tight transition-colors duration-500"
+                  style={{
+                    color: isScrolled ? "#0F172A" : "#FFFFFF",
+                  }}
+                >
+                  GRUPO
+                </span>
+                <span
+                  className="font-black drop-shadow-[0_1px_1px_rgba(0,0,0,0.1)] transition-colors duration-500"
+                  style={{
+                    color: isScrolled ? "#B88220" : "#E5A93C",
+                  }}
+                >
+                  VALU
+                </span>
+              </span>
+              <span
+                className="text-[9px] sm:text-[10px] tracking-widest font-bold mt-0.5 uppercase transition-colors duration-500"
+                style={{
+                  color: isScrolled ? "#64748B" : "#CBD5E1",
+                }}
+              >
+                RUC: {SITE_CONFIG.ruc}
+              </span>
+            </div>
           </Link>
 
           {/* ── DESKTOP NAV ── */}
           <div className="hidden lg:flex items-center gap-1">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
+              const linkColor = isScrolled
+                ? isActive
+                  ? "#9A6700"
+                  : "#1E293B"
+                : isActive
+                ? "#F3C658"
+                : "rgba(255, 255, 255, 0.92)";
+
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="relative px-3.5 py-2 text-[13px] font-medium tracking-wide rounded-lg transition-all duration-300 group"
+                  className="relative px-3.5 py-2 text-[13px] tracking-wide rounded-lg transition-all duration-300 group"
                 >
-                  {/* Text — white when transparent, dark when cream; gold stays gold */}
                   <span
-                    className="relative z-10 transition-all duration-300"
+                    className="relative z-10 transition-colors duration-500"
                     style={{
-                      color: isActive ? navActiveColor : navTextColor,
+                      color: linkColor,
                       fontWeight: isActive ? 700 : 500,
                     }}
                   >
                     {link.label}
                   </span>
 
-                  {/* Active indicator — gold line */}
+                  {/* Active indicator — gold glow line */}
                   {isActive && (
                     <motion.div
                       layoutId="navbar-indicator"
-                      className="absolute bottom-0.5 left-3 right-3 h-[2px] rounded-full"
+                      className="absolute bottom-0.5 left-3 right-3 h-[2.5px] rounded-full"
                       style={{
-                        background: `linear-gradient(90deg, ${CREAM.goldDark}, ${CREAM.goldLight}, ${CREAM.goldDark})`,
-                        boxShadow: `0 0 8px ${CREAM.goldGlow}`,
+                        background: isScrolled
+                          ? `linear-gradient(90deg, ${THEME.goldDark}, #F3C658, ${THEME.goldDark})`
+                          : "linear-gradient(90deg, #B88220, #F3C658, #B88220)",
+                        boxShadow: `0 0 10px ${THEME.goldGlow}`,
                       }}
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
 
-                  {/* Hover background — adapts to state */}
+                  {/* Hover background */}
                   <div
                     className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                    style={{ background: hoverBg }}
+                    style={{
+                      background: isScrolled
+                        ? "rgba(184, 130, 32, 0.08)"
+                        : "rgba(255, 255, 255, 0.08)",
+                    }}
                   />
                 </Link>
               );
@@ -203,30 +236,20 @@ export default function Navbar() {
               href={dynamicWhatsAppUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-[13px] font-semibold tracking-wide transition-all duration-300 hover:scale-[1.03] hover:shadow-md overflow-hidden"
-              style={{
-                background: waBtnBg,
-                color: btnTextColor,
-                border: `1px solid ${waBtnBorder}`,
-              }}
+              className="group relative inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold tracking-wide transition-all duration-300 hover:scale-[1.03] hover:shadow-md overflow-hidden bg-[#25D366] text-white shadow-sm hover:bg-[#20bd5a]"
               aria-label="Contactar por WhatsApp"
             >
-              <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+              <WhatsAppIcon className="w-4 h-4 text-white" />
               <span>WhatsApp</span>
             </a>
 
-            {/* Call Button — Gold always */}
+            {/* Call Button — Gold metallic */}
             <a
               href={phoneHref}
-              className="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] font-bold tracking-wide transition-all duration-300 hover:scale-[1.03] hover:shadow-md overflow-hidden"
-              style={{
-                background: `linear-gradient(135deg, ${CREAM.goldDark} 0%, ${CREAM.gold} 50%, ${CREAM.goldLight} 100%)`,
-                color: CREAM.white,
-                boxShadow: "0 2px 12px rgba(184, 134, 11, 0.2)",
-              }}
+              className="group relative inline-flex items-center gap-2 px-5 py-2 rounded-full text-[13px] font-bold tracking-wide transition-all duration-300 hover:scale-[1.03] hover:shadow-lg overflow-hidden bg-gold-metallic text-black shadow-sm"
               aria-label="Llamar por teléfono"
             >
-              <Phone className="w-4 h-4" />
+              <Phone className="w-4 h-4 text-black" />
               <span>Llamar</span>
             </a>
           </div>
@@ -234,85 +257,88 @@ export default function Navbar() {
           {/* ── MOBILE TOGGLE ── */}
           <button
             onClick={() => setIsOpen(true)}
-            className="lg:hidden relative p-2 rounded-xl transition-all duration-300 active:scale-95"
+            className="lg:hidden relative p-2.5 rounded-xl transition-all duration-300 active:scale-95 shadow-sm"
             style={{
-              color: menuIconColor,
+              background: isScrolled
+                ? "rgba(255, 255, 255, 0.85)"
+                : "rgba(255, 255, 255, 0.10)",
+              border: isScrolled
+                ? "1px solid rgba(212, 175, 55, 0.35)"
+                : "1px solid rgba(255, 255, 255, 0.20)",
+              backdropFilter: isScrolled ? "none" : "blur(8px)",
             }}
             aria-label="Abrir menú"
           >
-            <Menu className="w-6 h-6" />
+            <Menu
+              className="w-6 h-6 transition-colors duration-300"
+              style={{
+                color: isScrolled ? "#9A6700" : "#E5A93C",
+              }}
+            />
           </button>
         </nav>
       </header>
 
       {/* ═══════════════════════════════════════════════════════════════
-          MOBILE DRAWER — CREAM PREMIUM (always cream)
-      ═══════════════════════════════════════════════════════════════ */}
+          MOBILE DRAWER — CREMA PERLADO ELEGANTE
+         ═══════════════════════════════════════════════════════════════ */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            key="drawer"
+            className="fixed inset-0 z-50 lg:hidden flex justify-end"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed inset-0 z-[100] lg:hidden"
+            transition={{ duration: 0.25 }}
           >
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              className="absolute inset-0 backdrop-blur-sm"
-              style={{
-                background: "rgba(0, 0, 0, 0.3)",
-              }}
               onClick={closeMenu}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              aria-hidden="true"
             />
 
-            {/* Panel — Cream premium slide-in */}
+            {/* Drawer Panel */}
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{
-                type: "spring",
-                damping: 28,
-                stiffness: 300,
-                mass: 0.8,
-              }}
-              className="absolute right-0 top-0 bottom-0 w-[82%] max-w-[380px] flex flex-col overflow-hidden"
+              transition={{ type: "spring", damping: 28, stiffness: 280 }}
+              className="relative w-full max-w-[320px] sm:max-w-sm h-full flex flex-col z-10"
               style={{
-                background: `linear-gradient(180deg, ${CREAM.bg} 0%, ${CREAM.bgAlt} 100%)`,
-                boxShadow: "-10px 0 40px rgba(0, 0, 0, 0.1)",
+                background: THEME.bgDrawer,
+                borderLeft: "1px solid rgba(212, 175, 55, 0.35)",
+                boxShadow: "-10px 0 40px rgba(0, 0, 0, 0.4)",
               }}
             >
               {/* Panel Header — Logo + Close */}
-              <div
-                className="flex items-center justify-between px-5 pt-5 pb-4"
-                style={{
-                  borderBottom: `1px solid ${CREAM.border}`,
-                }}
-              >
-                <div
-                  className="relative shrink-0 w-[150px]"
-                  style={{ aspectRatio: "3756 / 894" }}
-                >
-                  <Image
-                    src="/logo-mandi.png"
-                    alt="MANDI CORP"
-                    fill
-                    className="object-contain object-left"
-                  />
+              <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-amber-900/10 bg-white/40">
+                <div className="flex items-center gap-3">
+                  <div className="relative h-11 w-11 shrink-0 drop-shadow-sm">
+                    <Image
+                      src="/grupovalu-sinfondo.png"
+                      alt="GRUPO VALU"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-base font-black tracking-wider leading-none">
+                      <span className="text-slate-900">GRUPO </span>
+                      <span className="text-[#B88220]">VALU</span>
+                    </span>
+                    <span className="text-[9px] tracking-widest text-slate-600 font-bold mt-0.5 uppercase">
+                      RUC: {SITE_CONFIG.ruc}
+                    </span>
+                  </div>
                 </div>
                 <button
                   onClick={closeMenu}
-                  className="p-2.5 rounded-xl transition-all duration-200 active:scale-90"
-                  style={{
-                    background: "rgba(0, 0, 0, 0.05)",
-                    border: `1px solid ${CREAM.border}`,
-                    color: CREAM.textMuted,
-                  }}
+                  className="p-2 rounded-xl transition-all duration-200 active:scale-90 bg-black/5 border border-slate-300/70 text-slate-700 hover:text-black hover:bg-black/10"
                   aria-label="Cerrar menú"
                 >
                   <X className="w-5 h-5" />
@@ -321,7 +347,7 @@ export default function Navbar() {
 
               {/* Links */}
               <div className="flex-1 overflow-y-auto px-4 py-5">
-                <nav className="flex flex-col gap-1">
+                <nav className="flex flex-col gap-1.5">
                   {NAV_LINKS.map((link, i) => {
                     const isActive = pathname === link.href;
                     return (
@@ -342,28 +368,18 @@ export default function Navbar() {
                           style={
                             isActive
                               ? {
-                                  background: "rgba(184, 134, 11, 0.08)",
-                                  borderLeft: `3px solid ${CREAM.goldLight}`,
-                                  color: CREAM.goldDark,
+                                  background: "rgba(229, 169, 60, 0.16)",
+                                  borderLeft: "4px solid #B88220",
+                                  color: "#9A6700",
                                   fontWeight: 700,
                                 }
                               : {
-                                  color: CREAM.text,
-                                  borderLeft: "3px solid transparent",
+                                  color: "#1E293B",
+                                  borderLeft: "4px solid transparent",
                                 }
                           }
                         >
-                          <span className="ml-1.5">
-                            {link.label}
-                          </span>
-                          {!isActive && (
-                            <div
-                              className="absolute inset-0 rounded-xl opacity-0 active:opacity-100 transition-opacity duration-200 pointer-events-none"
-                              style={{
-                                background: "rgba(0, 0, 0, 0.03)",
-                              }}
-                            />
-                          )}
+                          <span className="ml-1.5">{link.label}</span>
                         </Link>
                       </motion.div>
                     );
@@ -376,48 +392,32 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.3 }}
-                className="px-4 pb-5 pt-4"
-                style={{
-                  borderTop: `1px solid ${CREAM.border}`,
-                }}
+                className="px-4 pb-6 pt-4 border-t border-amber-900/10 bg-white/40"
               >
                 <a
                   href={dynamicWhatsAppUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={closeMenu}
-                  className="flex items-center justify-center gap-3 w-full min-h-[52px] rounded-xl text-[15px] font-bold transition-all duration-300 active:scale-[0.98]"
-                  style={{
-                    background: CREAM.whatsappBg,
-                    border: `1px solid rgba(37, 211, 102, 0.2)`,
-                    color: CREAM.text,
-                  }}
+                  className="flex items-center justify-center gap-3 w-full min-h-[50px] rounded-xl text-[14px] font-bold transition-all duration-300 active:scale-[0.98] bg-[#25D366] text-white shadow-md hover:bg-[#20ba59]"
                 >
-                  <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
+                  <WhatsAppIcon className="w-5 h-5 text-white" />
                   Asesoría por WhatsApp
                 </a>
 
                 <a
                   href={phoneHref}
                   onClick={closeMenu}
-                  className="flex items-center justify-center gap-3 w-full min-h-[52px] rounded-xl text-[15px] font-bold transition-all duration-300 active:scale-[0.98] mt-3"
-                  style={{
-                    background: `linear-gradient(135deg, ${CREAM.goldDark} 0%, ${CREAM.gold} 50%, ${CREAM.goldLight} 100%)`,
-                    color: CREAM.white,
-                    boxShadow: "0 4px 16px rgba(184, 134, 11, 0.2)",
-                  }}
+                  className="flex items-center justify-center gap-3 w-full min-h-[50px] rounded-xl text-[14px] font-bold transition-all duration-300 active:scale-[0.98] mt-3 bg-gold-metallic text-black shadow-lg"
                 >
-                  <Phone className="w-5 h-5" />
+                  <Phone className="w-5 h-5 text-black" />
                   Llamar Ahora
                 </a>
 
-                <p
-                  className="text-center text-[11px] mt-5 leading-relaxed"
-                  style={{ color: CREAM.textMuted }}
-                >
-                  CORPORACIÓN MANDI SAC
+                <p className="text-center text-[11px] mt-4 leading-relaxed text-slate-600 font-medium">
+                  {SITE_CONFIG.businessName}
                   <br />
-                  RUC: 20615991938
+                  RUC: {SITE_CONFIG.ruc}
                 </p>
               </motion.div>
             </motion.div>
