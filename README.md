@@ -60,6 +60,6 @@ Plataforma web oficial de **GRUPO VALU** (RUC: 20616559363), especializada en pr
 - **Razón Social:** GRUPO VALU
 - **RUC:** 20616559363
 - **Web Oficial:** [https://grupovalu.pe](https://grupovalu.pe)
-- **Teléfono / WhatsApp:** +51 966 897 008
+- **Teléfono / WhatsApp:** +51 955 515 927
 - **Email:** contacto@grupovalu.com
 - **Ubicación:** Lima, Perú

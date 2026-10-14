@@ -1,10 +1,10 @@
 /**
  * WhatsApp Conversion Utility
  * Centralized redirect logic for all WhatsApp CTAs across the site.
- * Phone: +51 966 897 008 (GRUPO VALU)
+ * Phone: +51 955 515 927 (GRUPO VALU)
  */
 
-export const WHATSAPP_PHONE = "51966897008";
+export const WHATSAPP_PHONE = "51955515927";
 
 type WhatsAppContext =
   | "home"
